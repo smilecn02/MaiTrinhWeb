@@ -2,18 +2,21 @@
 
 @{
     ViewBag.Title = "Index";
+    string imagePath = "../ProductImages/";
 }
 
-<h2>Thống kê</h2>
+<h2>Thống kê sản phẩm tồn</h2>
 
-<p>
-    @Html.ActionLink("Tạo mới", "Create", null, new { @class = "btn btn-success" })
-</p>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.ProductName)
         </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Images)
+        </th>
+
         <th>
             @Html.DisplayNameFor(model => model.SumQuantity)
         </th>
@@ -23,8 +26,20 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.ProductName)
+            @Html.ActionLink(item.ProductName, "Details", "Products", new { id = item.ProductId }, null)
         </td>
+
+        <td>
+            @if (!string.IsNullOrWhiteSpace(item.Images))
+            {
+                <img src="@(imagePath + item.Images)" width="50" />
+            }
+            else
+            {
+                <img src="http://placehold.it/50x25/">
+            }
+        </td>
+
         <td>
             @Html.DisplayFor(modelItem => item.SumQuantity)
         </td>
@@ -32,3 +47,15 @@
 }
 
 </table>
+
+<br />
+<b>Tổng lợi nhuận:</b> 
+
+@{
+    if (@ViewBag.SumProfit != null)
+    {
+        @ViewBag.SumProfit.ToString("C0", new System.Globalization.CultureInfo("vi-VN"));
+    }
+}
+
+

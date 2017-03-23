@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MaiTrinhWeb.Data;
+using System;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using MaiTrinhWeb.Data;
 
 namespace MaiTrinhWeb.Controllers
 {
@@ -40,7 +38,13 @@ namespace MaiTrinhWeb.Controllers
         public ActionResult Create()
         {
             ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name");
-            ViewBag.ProductId = new SelectList(db.Products, "Id", "Name");
+
+            //ViewBag.ProductId = new SelectList(db.Products, "Id", "Name");
+
+            ViewBag.ProductId = new SelectList(db.ImportProducts
+                .Where(i => i.Quantity > 0)
+                .Select(x => x.Product), "Id", "Name");
+
             return View();
         }
 
@@ -49,13 +53,21 @@ namespace MaiTrinhWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ExportDate,ProductId,Quantity,Price,Description,CustomerId")] SellProduct sellProduct)
+        public ActionResult Create(SellProduct sellProduct)
         {
             var importProducts = db.ImportProducts.GroupBy(i => i.ProductId)
                     .Select(i => new { ProductId = i.Key, Quantity = i.Sum(j => j.Quantity) });
-            var findProduct = importProducts.FirstOrDefault(i => i.ProductId == sellProduct.ProductId);
 
-            if (findProduct != null && findProduct.Quantity < sellProduct.Quantity)
+            var shellProducts = db.SellProducts.GroupBy(i => i.ProductId)
+                    .Select(i => new { ProductId = i.Key, Quantity = i.Sum(j => j.Quantity) });
+
+            var findImportProduct = importProducts.FirstOrDefault(i => i.ProductId == sellProduct.ProductId);
+            var findShellProduct = shellProducts.FirstOrDefault(i => i.ProductId == sellProduct.ProductId);
+
+            int existProductCount = (findImportProduct != null ? findImportProduct.Quantity : 0) -
+                        (findShellProduct != null ? findShellProduct.Quantity : 0);
+
+            if (sellProduct.Quantity > existProductCount)
                 ModelState.AddModelError("Quantity", "Số lượng sản phẩm bán không được lớn hơn số lượng sản phẩm nhập.");
 
             if (ModelState.IsValid)
@@ -84,7 +96,13 @@ namespace MaiTrinhWeb.Controllers
                 return HttpNotFound();
             }
             ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name", sellProduct.CustomerId);
-            ViewBag.ProductId = new SelectList(db.Products, "Id", "Name", sellProduct.ProductId);
+
+            //ViewBag.ProductId = new SelectList(db.Products, "Id", "Name", sellProduct.ProductId);
+
+            ViewBag.ProductId = new SelectList(db.ImportProducts
+                .Where(i => i.Quantity > 0)
+                .Select(x => x.Product), "Id", "Name");
+
             return View(sellProduct);
         }
 
@@ -93,7 +111,7 @@ namespace MaiTrinhWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ExportDate,ProductId,Quantity,Price,Description,CustomerId")] SellProduct sellProduct)
+        public ActionResult Edit(SellProduct sellProduct)
         {
             if (ModelState.IsValid)
             {
@@ -102,7 +120,13 @@ namespace MaiTrinhWeb.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name", sellProduct.CustomerId);
-            ViewBag.ProductId = new SelectList(db.Products, "Id", "Name", sellProduct.ProductId);
+
+            //ViewBag.ProductId = new SelectList(db.Products, "Id", "Name", sellProduct.ProductId);
+
+            ViewBag.ProductId = new SelectList(db.ImportProducts
+                .Where(i => i.Quantity > 0)
+                .Select(x => x.Product), "Id", "Name");
+
             return View(sellProduct);
         }
 

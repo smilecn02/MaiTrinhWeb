@@ -10,6 +10,9 @@ namespace MaiTrinhWeb.Models
         [Display(Name = "Tên sản phẩm")]
         public string ProductName { get; set; }
 
+        [Display(Name = "Hình ảnh")]
+        public string Images { get; set; }
+
         [Display(Name = "Tổng số lượng")]
         public int SumQuantity { get; set; }
     }

@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MaiTrinhWeb.Data
 {
@@ -12,6 +8,7 @@ namespace MaiTrinhWeb.Data
         public Guid Id { get; set; }
 
         [Display(Name = "Ngày nhập")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime ImportDate { get; set; }
 
         [Display(Name = "Sản phẩm")]
@@ -19,9 +16,11 @@ namespace MaiTrinhWeb.Data
         public virtual Product Product { get; set; }
 
         [Display(Name = "Số lượng")]
+        [Range(1, int.MaxValue, ErrorMessage = "Vui lòng điền số lượng lớn hơn 0.")]
         public int Quantity { get; set; }
 
         [Display(Name = "Giá")]
+        [DisplayFormat(DataFormatString = "{0:0}", ApplyFormatInEditMode = true)]
         public decimal Price { get; set; }
 
         [Display(Name = "Mô tả")]

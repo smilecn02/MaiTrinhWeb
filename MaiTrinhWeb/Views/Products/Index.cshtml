@@ -1,4 +1,6 @@
-﻿@model IEnumerable<MaiTrinhWeb.Models.ProductViewModel>
+﻿@using PagedList.Mvc;
+
+@model PagedList.IPagedList<MaiTrinhWeb.Models.ProductViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -13,28 +15,25 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Code)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Code)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Images)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Images)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Size)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Size)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Price)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().ColorName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ColorName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Tags)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Tags)
         </th>
         <th></th>
     </tr>
@@ -51,13 +50,18 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            <img src="@(imagePath + item.Images)" width="50" />
+            @if (!string.IsNullOrWhiteSpace(item.Images))
+            {
+                <img src="@(imagePath + item.Images)" width="50" />
+            }
+            else
+            {
+                <img src="http://placehold.it/50x25/">
+                @*<img src="http://placehold.it/50x25/09f/fff">*@
+            }
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Size)
-        </td>
-        <td>
-            @item.Price.ToString("C0", new System.Globalization.CultureInfo("vi-VN"))
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ColorName)
@@ -74,3 +78,7 @@
 }
 
 </table>
+
+<div>
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+</div>

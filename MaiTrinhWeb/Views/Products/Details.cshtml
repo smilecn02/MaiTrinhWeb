@@ -2,12 +2,12 @@
 
 @{
     ViewBag.Title = "Details";
+    string imagePath = "../../ProductImages/";
 }
 
-<h2>Details</h2>
+<h2>Chi tiết sản phẩm</h2>
 
 <div>
-    <h4>Product</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -47,7 +47,16 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Images)
+            
+            @if (!string.IsNullOrWhiteSpace(Model.Images))
+            {
+                <img src="@(imagePath + Model.Images)" width="50" />
+            }
+            else
+            {
+                <img src="http://placehold.it/50x25/">
+            }
+
         </dd>
 
         <dt>
@@ -56,14 +65,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.Size)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Price)
         </dd>
 
         <dt>

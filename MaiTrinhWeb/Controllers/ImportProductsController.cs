@@ -36,7 +36,7 @@ namespace MaiTrinhWeb.Controllers
         // GET: ImportProducts/Create
         public ActionResult Create()
         {
-            ViewBag.ProductId = new SelectList(db.Products, "Id", "Name");
+            ViewBag.ProductId = new SelectList(db.Products.OrderBy(i => i.Name), "Id", "Name");
             return View();
         }
 
@@ -45,7 +45,7 @@ namespace MaiTrinhWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ImportDate,ProductId,Quantity,Price,Description")] ImportProduct importProduct)
+        public ActionResult Create(ImportProduct importProduct)
         {
             if (ModelState.IsValid)
             {
@@ -55,7 +55,9 @@ namespace MaiTrinhWeb.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ProductId = new SelectList(db.Products, "Id", "Name", importProduct.ProductId);
+            var products = db.Products.OrderBy(i => i.Name).ToList();
+
+            ViewBag.ProductId = new SelectList(products, "Id", "Name", importProduct.ProductId);
             return View(importProduct);
         }
 
@@ -71,7 +73,7 @@ namespace MaiTrinhWeb.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ProductId = new SelectList(db.Products, "Id", "Name", importProduct.ProductId);
+            ViewBag.ProductId = new SelectList(db.Products.OrderBy(i => i.Name), "Id", "Name", importProduct.ProductId);
             return View(importProduct);
         }
 
@@ -80,7 +82,7 @@ namespace MaiTrinhWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ImportDate,ProductId,Quantity,Price,Description")] ImportProduct importProduct)
+        public ActionResult Edit(ImportProduct importProduct)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +90,7 @@ namespace MaiTrinhWeb.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ProductId = new SelectList(db.Products, "Id", "Name", importProduct.ProductId);
+            ViewBag.ProductId = new SelectList(db.Products.OrderBy(i => i.Name), "Id", "Name", importProduct.ProductId);
             return View(importProduct);
         }
 

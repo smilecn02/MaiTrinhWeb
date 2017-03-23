@@ -34,6 +34,7 @@
             context.Colors.AddOrUpdate(p => p.Name, new Color() { Id = new Guid("EF9923FB-FFBE-4F75-A114-83714DF71B04"), Name = "Hồng" });
             context.Colors.AddOrUpdate(p => p.Name, new Color() { Id = new Guid("5B90AFF1-FC46-4F05-9B9F-23824599D518"), Name = "Trắng" });
             context.Colors.AddOrUpdate(p => p.Name, new Color() { Id = new Guid("42E5667A-4D04-4D00-9CEF-AD970F6E038F"), Name = "Đen" });
+            context.Colors.AddOrUpdate(p => p.Name, new Color() { Id = new Guid("716A233F-F581-4CDE-B4F8-D516BCCDE098"), Name = "Xám" });
         }
     }
 }

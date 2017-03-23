@@ -7,7 +7,7 @@ namespace MaiTrinhWeb.Data
     {
         public Guid Id { get; set; }
 
-        [Display(Name = "Mã")]
+        [Display(Name = "Mã sản phẩm")]
         public string Code { get; set; }
 
         [Display(Name = "Tên sản phẩm")]
@@ -21,9 +21,6 @@ namespace MaiTrinhWeb.Data
 
         [Display(Name = "Kích cỡ")]
         public string Size { get; set; }
-
-        [Display(Name = "Giá")]
-        public decimal Price { get; set; }
 
         [Display(Name = "Màu sắc")]
         public Guid? ColorId { get; set; }

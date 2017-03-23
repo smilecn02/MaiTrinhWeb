@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
+﻿using AutoMapper;
 using MaiTrinhWeb.Data;
-using AutoMapper;
 using MaiTrinhWeb.Models;
+using PagedList;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Net;
+using System.Web.Mvc;
+using System.Linq;
 
 namespace MaiTrinhWeb.Controllers
 {
@@ -17,12 +16,17 @@ namespace MaiTrinhWeb.Controllers
         private MaiTrinhWebContext db = new MaiTrinhWebContext();
 
         // GET: Products
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             var products = db.Products.Include(p => p.Color);
+            products = products.OrderBy(i => i.Name);
 
             var productViewModels = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(products);
-            return View(productViewModels);
+
+            int pageSize = 15;
+            int pageNumber = (page ?? 1);
+
+            return View(productViewModels.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Products/Details/5
@@ -53,7 +57,7 @@ namespace MaiTrinhWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Code,Name,Description,Images,Size,Price,ColorId,SupplierId,Tags")] Product product)
+        public ActionResult Create(Product product)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +94,7 @@ namespace MaiTrinhWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Code,Name,Description,Images,Size,Price,ColorId,SupplierId,Tags")] Product product)
+        public ActionResult Edit(Product product)
         {
             if (ModelState.IsValid)
             {
