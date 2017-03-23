@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace MaiTrinhWeb.Controllers
 {
@@ -12,7 +13,7 @@ namespace MaiTrinhWeb.Controllers
     {
         private MaiTrinhWebContext db = new MaiTrinhWebContext();
 
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             var importProducts = db.ImportProducts.GroupBy(i => new { i.ProductId, i.Product.Name })
                 .Select(i => new InventoryViewModel { ProductId = i.Key.ProductId, ProductName = i.Key.Name
@@ -54,9 +55,12 @@ namespace MaiTrinhWeb.Controllers
             {
                 ViewBag.SumProfit = 0;
             }
-            
 
-            return View(inventoryQuery2.ToList());
+            int pageSize = 15;
+            int pageNumber = (page ?? 1);
+
+            return View(inventoryQuery2.OrderBy(i => i.ProductName)
+                .ToPagedList(pageNumber, pageSize));
         }
     }
 }

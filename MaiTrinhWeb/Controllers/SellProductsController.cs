@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using PagedList;
 
 namespace MaiTrinhWeb.Controllers
 {
@@ -13,10 +14,14 @@ namespace MaiTrinhWeb.Controllers
         private MaiTrinhWebContext db = new MaiTrinhWebContext();
 
         // GET: SellProducts
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             var sellProducts = db.SellProducts.Include(s => s.Customer).Include(s => s.Product);
-            return View(sellProducts.ToList());
+
+            int pageSize = 15;
+            int pageNumber = (page ?? 1);
+
+            return View(sellProducts.OrderByDescending(i => i.ExportDate).ThenBy(i => i.Product.Name).ToPagedList(pageNumber, pageSize));
         }
 
         // GET: SellProducts/Details/5
@@ -43,7 +48,9 @@ namespace MaiTrinhWeb.Controllers
 
             ViewBag.ProductId = new SelectList(db.ImportProducts
                 .Where(i => i.Quantity > 0)
-                .Select(x => x.Product), "Id", "Name");
+                .Select(x => x.Product)
+                .OrderBy(i => i.Name)
+                , "Id", "Name");
 
             return View();
         }
@@ -79,7 +86,13 @@ namespace MaiTrinhWeb.Controllers
             }
 
             ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name", sellProduct.CustomerId);
-            ViewBag.ProductId = new SelectList(db.Products, "Id", "Name", sellProduct.ProductId);
+
+            ViewBag.ProductId = new SelectList(db.ImportProducts
+                .Where(i => i.Quantity > 0)
+                .Select(x => x.Product)
+                .OrderBy(i => i.Name)
+                , "Id", "Name");
+
             return View(sellProduct);
         }
 
@@ -97,11 +110,11 @@ namespace MaiTrinhWeb.Controllers
             }
             ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name", sellProduct.CustomerId);
 
-            //ViewBag.ProductId = new SelectList(db.Products, "Id", "Name", sellProduct.ProductId);
-
             ViewBag.ProductId = new SelectList(db.ImportProducts
                 .Where(i => i.Quantity > 0)
-                .Select(x => x.Product), "Id", "Name");
+                .Select(x => x.Product)
+                .OrderBy(i => i.Name)
+                , "Id", "Name");
 
             return View(sellProduct);
         }
@@ -125,7 +138,9 @@ namespace MaiTrinhWeb.Controllers
 
             ViewBag.ProductId = new SelectList(db.ImportProducts
                 .Where(i => i.Quantity > 0)
-                .Select(x => x.Product), "Id", "Name");
+                .Select(x => x.Product)
+                .OrderBy(i => i.Name)
+                , "Id", "Name");
 
             return View(sellProduct);
         }

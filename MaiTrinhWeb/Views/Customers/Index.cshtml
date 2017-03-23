@@ -11,16 +11,16 @@
 </p>
 <table class="table">
     <tr>
-        <th>
+        <th class="col-md-2">
             @Html.DisplayNameFor(model => model.Name)
         </th>
-        <th>
+        <th class="col-md-4">
             @Html.DisplayNameFor(model => model.Address)
         </th>
-        <th>
+        <th class="col-md-2">
             @Html.DisplayNameFor(model => model.Phone)
         </th>
-        <th>
+        <th class="col-md-2">
             @Html.DisplayNameFor(model => model.Facebook)
         </th>
         <th></th>
@@ -38,7 +38,7 @@
             @Html.DisplayFor(modelItem => item.Phone)
         </td>
         <td>
-            <a href="@item.Facebook" target="_blank">Facebook</a>
+            @Html.DisplayFor(modelItem => item.Facebook)
         </td>
         <td>
             @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.Id }, new { @class = "btn btn-success btn-xs" }) 

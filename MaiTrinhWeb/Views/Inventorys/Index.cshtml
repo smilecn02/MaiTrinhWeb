@@ -1,4 +1,5 @@
-﻿@model IEnumerable<MaiTrinhWeb.Models.InventoryViewModel>
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<MaiTrinhWeb.Models.InventoryViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -10,15 +11,15 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ProductName)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().ProductName)
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.Images)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Images)
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.SumQuantity)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().SumQuantity)
         </th>
 
     </tr>
@@ -58,4 +59,7 @@
     }
 }
 
+<div>
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+</div>
 

@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using PagedList;
 
 namespace MaiTrinhWeb.Controllers
 {
@@ -12,10 +13,15 @@ namespace MaiTrinhWeb.Controllers
         private MaiTrinhWebContext db = new MaiTrinhWebContext();
 
         // GET: ImportProducts
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             var importProducts = db.ImportProducts.Include(i => i.Product);
-            return View(importProducts.ToList());
+
+            int pageSize = 15;
+            int pageNumber = (page ?? 1);
+
+            return View(importProducts.OrderByDescending(i => i.ImportDate).ThenBy(i => i.Product.Name)
+                .ToPagedList(pageNumber, pageSize));
         }
 
         // GET: ImportProducts/Details/5
