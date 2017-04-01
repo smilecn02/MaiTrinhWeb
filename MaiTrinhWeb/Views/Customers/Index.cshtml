@@ -1,4 +1,6 @@
-﻿@model IEnumerable<MaiTrinhWeb.Data.Customer>
+﻿@using PagedList.Mvc;
+
+@model PagedList.IPagedList<MaiTrinhWeb.Data.Customer>
 
 @{
     ViewBag.Title = "Index";
@@ -9,19 +11,21 @@
 <p>
     @Html.ActionLink("Tạo mới", "Create", null, new { @class = "btn btn-success" })
 </p>
+
+
 <table class="table">
     <tr>
         <th class="col-md-2">
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Name)
         </th>
         <th class="col-md-4">
-            @Html.DisplayNameFor(model => model.Address)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Address)
         </th>
         <th class="col-md-2">
-            @Html.DisplayNameFor(model => model.Phone)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Phone)
         </th>
         <th class="col-md-2">
-            @Html.DisplayNameFor(model => model.Facebook)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Facebook)
         </th>
         <th></th>
     </tr>
@@ -49,3 +53,7 @@
 }
 
 </table>
+
+<div>
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+</div>

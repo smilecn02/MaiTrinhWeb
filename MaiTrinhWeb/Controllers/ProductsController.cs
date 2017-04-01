@@ -16,9 +16,23 @@ namespace MaiTrinhWeb.Controllers
         private MaiTrinhWebContext db = new MaiTrinhWebContext();
 
         // GET: Products
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page, string searchData, string filterValue)
         {
-            var products = db.Products.Include(p => p.Color);
+            if (searchData != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchData = filterValue;
+            }
+
+            ViewBag.FilterValue = searchData;
+
+
+            var products = db.Products.Include(p => p.Color)
+                .Where(i => string.IsNullOrEmpty(searchData) || i.Name.ToLower().Contains(searchData.ToLower()));
+
             products = products.OrderBy(i => i.Name);
 
             var productViewModels = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(products);

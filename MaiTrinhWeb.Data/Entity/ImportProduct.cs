@@ -8,7 +8,8 @@ namespace MaiTrinhWeb.Data
         public Guid Id { get; set; }
 
         [Display(Name = "Ngày nhập")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString="{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime ImportDate { get; set; }
 
         [Display(Name = "Sản phẩm")]

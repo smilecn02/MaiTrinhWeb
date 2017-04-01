@@ -12,6 +12,15 @@
 <p>
     @Html.ActionLink("Tạo mới", "Create", null, new { @class = "btn btn-success" })
 </p>
+
+@using (Html.BeginForm("Index", "Products", FormMethod.Get))
+{
+    <p>
+        Tên sản phẩm: @Html.TextBox("searchData", ViewBag.FilterValue as string)
+        <input type="submit" value="Tìm kiếm" />
+    </p>
+}
+
 <table class="table">
     <tr>
         <th>
@@ -57,7 +66,6 @@
             else
             {
                 <img src="http://placehold.it/50x25/">
-                @*<img src="http://placehold.it/50x25/09f/fff">*@
             }
         </td>
         <td>
@@ -80,5 +88,5 @@
 </table>
 
 <div>
-    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, filterValue = ViewBag.FilterValue }))
 </div>

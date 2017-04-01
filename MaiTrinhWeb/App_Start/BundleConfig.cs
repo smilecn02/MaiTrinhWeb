@@ -19,12 +19,15 @@ namespace MaiTrinhWeb
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js",
+                      "~/Scripts/jquery-ui-1.12.1.js",
+                      "~/Scripts/app/datepicker.js",
                       "~/Libs/jsImgSlider/themes/1/js-image-slider.js"
                       ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
+                      "~/Content/themes/base/all.css",
                       "~/Libs/jsImgSlider/themes/1/js-image-slider.css"
                       ));
         }

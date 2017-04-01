@@ -11,6 +11,15 @@ namespace MaiTrinhWeb.Controllers
 {
     public class SellProductsController : Controller
     {
+        private SelectList GetProductId(Guid? selectedProductId = null)
+        {
+            return new SelectList(db.ImportProducts
+                .Where(i => i.Quantity > 0)
+                .Select(x => x.Product)
+                .OrderBy(i => i.Name)
+                , "Id", "Name", selectedProductId ?? Guid.Empty);
+        }
+
         private MaiTrinhWebContext db = new MaiTrinhWebContext();
 
         // GET: SellProducts
@@ -46,11 +55,7 @@ namespace MaiTrinhWeb.Controllers
 
             //ViewBag.ProductId = new SelectList(db.Products, "Id", "Name");
 
-            ViewBag.ProductId = new SelectList(db.ImportProducts
-                .Where(i => i.Quantity > 0)
-                .Select(x => x.Product)
-                .OrderBy(i => i.Name)
-                , "Id", "Name");
+            ViewBag.ProductId = GetProductId();
 
             return View();
         }
@@ -87,11 +92,7 @@ namespace MaiTrinhWeb.Controllers
 
             ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name", sellProduct.CustomerId);
 
-            ViewBag.ProductId = new SelectList(db.ImportProducts
-                .Where(i => i.Quantity > 0)
-                .Select(x => x.Product)
-                .OrderBy(i => i.Name)
-                , "Id", "Name");
+            ViewBag.ProductId = GetProductId(sellProduct.ProductId);
 
             return View(sellProduct);
         }
@@ -110,11 +111,7 @@ namespace MaiTrinhWeb.Controllers
             }
             ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name", sellProduct.CustomerId);
 
-            ViewBag.ProductId = new SelectList(db.ImportProducts
-                .Where(i => i.Quantity > 0)
-                .Select(x => x.Product)
-                .OrderBy(i => i.Name)
-                , "Id", "Name");
+            ViewBag.ProductId = GetProductId(sellProduct.ProductId);
 
             return View(sellProduct);
         }
@@ -134,13 +131,7 @@ namespace MaiTrinhWeb.Controllers
             }
             ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name", sellProduct.CustomerId);
 
-            //ViewBag.ProductId = new SelectList(db.Products, "Id", "Name", sellProduct.ProductId);
-
-            ViewBag.ProductId = new SelectList(db.ImportProducts
-                .Where(i => i.Quantity > 0)
-                .Select(x => x.Product)
-                .OrderBy(i => i.Name)
-                , "Id", "Name");
+            ViewBag.ProductId = GetProductId(sellProduct.ProductId);
 
             return View(sellProduct);
         }

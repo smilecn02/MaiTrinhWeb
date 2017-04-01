@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MaiTrinhWeb.Data;
+using PagedList;
+using System;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using MaiTrinhWeb.Data;
 
 namespace MaiTrinhWeb.Controllers
 {
@@ -15,9 +14,12 @@ namespace MaiTrinhWeb.Controllers
         private MaiTrinhWebContext db = new MaiTrinhWebContext();
 
         // GET: Customers
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View(db.Customers.ToList());
+            int pageSize = 15;
+            int pageNumber = (page ?? 1);
+            return View(db.Customers.OrderBy(i => i.Name)
+                .ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Customers/Details/5
