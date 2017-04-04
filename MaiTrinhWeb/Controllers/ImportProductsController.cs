@@ -13,9 +13,24 @@ namespace MaiTrinhWeb.Controllers
         private MaiTrinhWebContext db = new MaiTrinhWebContext();
 
         // GET: ImportProducts
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page, string searchData, string filterValue)
         {
-            var importProducts = db.ImportProducts.Include(i => i.Product);
+            if (searchData != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchData = filterValue;
+            }
+
+            ViewBag.FilterValue = searchData;
+
+            string searchDataLower = !string.IsNullOrEmpty(searchData) ? searchData.ToLower() : string.Empty;
+
+            var importProducts = db.ImportProducts.Include(i => i.Product)
+                    .Where(i => string.IsNullOrEmpty(searchData) 
+                        || i.Product.Name.ToLower().Contains(searchDataLower));
 
             int pageSize = 15;
             int pageNumber = (page ?? 1);

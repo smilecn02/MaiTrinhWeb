@@ -31,7 +31,8 @@ namespace MaiTrinhWeb.Controllers
 
 
             var products = db.Products.Include(p => p.Color)
-                .Where(i => string.IsNullOrEmpty(searchData) || i.Name.ToLower().Contains(searchData.ToLower()));
+                .Where(i => string.IsNullOrEmpty(searchData) 
+                    || i.Name.ToLower().Contains(searchData.ToLower()));
 
             products = products.OrderBy(i => i.Name);
 

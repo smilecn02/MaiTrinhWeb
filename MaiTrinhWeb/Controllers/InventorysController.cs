@@ -47,20 +47,45 @@ namespace MaiTrinhWeb.Controllers
                         on j1.ProductId equals j2.ProductId
                         select new { Profit = (j2.Quantity * j2.Price) - j2.ShipPrice - (j2.Quantity * j1.Price) };
 
-            if (query != null && query.Any())
-            {
-                ViewBag.SumProfit = query.Sum(i => i.Profit);
-            }
-            else
-            {
-                ViewBag.SumProfit = 0;
-            }
+
+            ViewBag.SumProfit = query != null && query.Any() ? query.Sum(i => i.Profit) : 0;
+
+            ViewBag.SumProfitJanuary = getProfitByMonth(1);
+            ViewBag.SumProfitFebruary = getProfitByMonth(2);
+            ViewBag.SumProfitMarch = getProfitByMonth(3);
+            ViewBag.SumProfitApril = getProfitByMonth(4);
+            ViewBag.SumProfitMay = getProfitByMonth(5);
+
+            ViewBag.SumProfitJune = getProfitByMonth(6);
+            ViewBag.SumProfitJuly = getProfitByMonth(7);
+            ViewBag.SumProfitAugust = getProfitByMonth(8);
+            ViewBag.SumProfitSeptember = getProfitByMonth(9);
+            ViewBag.SumProfitOctober = getProfitByMonth(10);
+
+            ViewBag.SumProfitNovember = getProfitByMonth(11);
+            ViewBag.SumProfitDecember = getProfitByMonth(12);
+
+
+            ViewBag.SumImportProfit = db.ImportProducts.Any() ? db.ImportProducts.Sum(i => i.Price * i.Quantity) : 0;
+            ViewBag.SumSellProfit = db.SellProducts.Any() ? db.SellProducts.Sum(i => i.Price * i.Quantity - i.ShipPrice) : 0;
 
             int pageSize = 15;
             int pageNumber = (page ?? 1);
 
-            return View(inventoryQuery2.OrderBy(i => i.ProductName)
+            return View(inventoryQuery2.Where(i => i.SumQuantity > 0).OrderBy(i => i.ProductName)
                 .ToPagedList(pageNumber, pageSize));
+        }
+
+        private decimal getProfitByMonth(int month)
+        {
+            var currentYear = DateTime.Now.Year;
+
+            var query = from j1 in db.ImportProducts
+                             join j2 in db.SellProducts.Where(i => i.SellDate.Month == month && i.SellDate.Year == currentYear)
+                             on j1.ProductId equals j2.ProductId
+                             select new { Profit = (j2.Quantity * j2.Price) - j2.ShipPrice - (j2.Quantity * j1.Price) };
+
+            return (query != null && query.Any()) ? query.Sum(i => i.Profit) : 0;
         }
     }
 }

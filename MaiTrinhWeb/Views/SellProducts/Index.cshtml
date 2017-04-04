@@ -10,6 +10,15 @@
 <p>
     @Html.ActionLink("Tạo mới", "Create", null, new { @class = "btn btn-success" })
 </p>
+
+@using (Html.BeginForm("Index", "SellProducts", FormMethod.Get))
+{
+    <p class="pull-right col-md-4 s2">
+        @Html.TextBox("searchData", ViewBag.FilterValue as string, new { placeholder = "Tên sản phẩm" })
+        <input type="submit" value="Tìm kiếm" class="btn btn-primary s3" />
+    </p>
+}
+
 <table class="table">
     <tr>
         <th>
@@ -19,7 +28,7 @@
             @Html.DisplayNameFor(model => model.FirstOrDefault().Product.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().ExportDate)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().SellDate)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().Quantity)
@@ -45,7 +54,7 @@
             @Html.DisplayFor(modelItem => item.Product.Name)
         </td>
         <td>
-            @item.ExportDate.ToString("dd/MM/yyyy")
+            @item.SellDate.ToString("dd/MM/yyyy")
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Quantity)
@@ -70,5 +79,5 @@
 </table>
 
 <div>
-    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, filterValue = ViewBag.FilterValue }))
 </div>

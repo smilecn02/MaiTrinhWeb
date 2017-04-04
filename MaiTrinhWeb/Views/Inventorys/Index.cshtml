@@ -49,6 +49,10 @@
 
 </table>
 
+<div>
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+</div>
+
 <br />
 <b>Tổng lợi nhuận:</b> 
 
@@ -59,7 +63,148 @@
     }
 }
 
-<div>
-    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
-</div>
+
+<br /><br />
+<b>Tổng lợi nhuận tháng 01:</b>
+
+@{
+    if (@ViewBag.SumProfitJanuary != null)
+    {
+        @ViewBag.SumProfitJanuary.ToString("C0", new System.Globalization.CultureInfo("vi-VN"));
+    }
+}
+
+<br />
+<b>Tổng lợi nhuận tháng 02:</b>
+
+@{
+    if (@ViewBag.SumProfitFebruary != null)
+    {
+        @ViewBag.SumProfitFebruary.ToString("C0", new System.Globalization.CultureInfo("vi-VN"));
+    }
+}
+
+<br />
+<b>Tổng lợi nhuận tháng 03:</b>
+
+@{
+    if (@ViewBag.SumProfitMarch != null)
+    {
+        @ViewBag.SumProfitMarch.ToString("C0", new System.Globalization.CultureInfo("vi-VN"));
+    }
+}
+
+<br />
+<b>Tổng lợi nhuận tháng 04:</b>
+
+@{
+    if (@ViewBag.SumProfitApril != null)
+    {
+        @ViewBag.SumProfitApril.ToString("C0", new System.Globalization.CultureInfo("vi-VN"));
+    }
+}
+
+<br />
+<b>Tổng lợi nhuận tháng 05:</b>
+
+@{
+    if (@ViewBag.SumProfitMay != null)
+    {
+        @ViewBag.SumProfitMay.ToString("C0", new System.Globalization.CultureInfo("vi-VN"));
+    }
+}
+
+
+<br />
+<b>Tổng lợi nhuận tháng 06:</b>
+
+@{
+    if (@ViewBag.SumProfitJune != null)
+    {
+        @ViewBag.SumProfitJune.ToString("C0", new System.Globalization.CultureInfo("vi-VN"));
+    }
+}
+
+<br />
+<b>Tổng lợi nhuận tháng 07:</b>
+
+@{
+    if (@ViewBag.SumProfitJuly != null)
+    {
+        @ViewBag.SumProfitJuly.ToString("C0", new System.Globalization.CultureInfo("vi-VN"));
+    }
+}
+
+<br />
+<b>Tổng lợi nhuận tháng 08:</b>
+
+@{
+    if (@ViewBag.SumProfitAugust != null)
+    {
+        @ViewBag.SumProfitAugust.ToString("C0", new System.Globalization.CultureInfo("vi-VN"));
+    }
+}
+
+<br />
+<b>Tổng lợi nhuận tháng 09:</b>
+
+@{
+    if (@ViewBag.SumProfitSeptember != null)
+    {
+        @ViewBag.SumProfitSeptember.ToString("C0", new System.Globalization.CultureInfo("vi-VN"));
+    }
+}
+
+<br />
+<b>Tổng lợi nhuận tháng 10:</b>
+
+@{
+    if (@ViewBag.SumProfitOctober != null)
+    {
+        @ViewBag.SumProfitOctober.ToString("C0", new System.Globalization.CultureInfo("vi-VN"));
+    }
+}
+
+<br />
+<b>Tổng lợi nhuận tháng 11:</b>
+
+@{
+    if (@ViewBag.SumProfitNovember != null)
+    {
+        @ViewBag.SumProfitNovember.ToString("C0", new System.Globalization.CultureInfo("vi-VN"));
+    }
+}
+
+<br />
+<b>Tổng lợi nhuận tháng 12:</b>
+
+@{
+    if (@ViewBag.SumProfitDecember != null)
+    {
+        @ViewBag.SumProfitDecember.ToString("C0", new System.Globalization.CultureInfo("vi-VN"));
+    }
+}
+
+
+
+<br /><br /><b>Tổng tiền nhập:</b>
+
+@{ 
+    if (@ViewBag.SumImportProfit != null)
+    {
+         @ViewBag.SumImportProfit.ToString("C0", new System.Globalization.CultureInfo("vi-VN"));
+    }
+}
+
+<br /><b>Tổng tiền bán:</b>
+
+@{
+    if (@ViewBag.SumSellProfit != null)
+    {
+        @ViewBag.SumSellProfit.ToString("C0", new System.Globalization.CultureInfo("vi-VN"));
+    }
+}
+
+
+
 

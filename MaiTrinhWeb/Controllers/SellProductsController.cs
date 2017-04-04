@@ -23,14 +23,30 @@ namespace MaiTrinhWeb.Controllers
         private MaiTrinhWebContext db = new MaiTrinhWebContext();
 
         // GET: SellProducts
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page, string searchData, string filterValue)
         {
-            var sellProducts = db.SellProducts.Include(s => s.Customer).Include(s => s.Product);
+            if (searchData != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchData = filterValue;
+            }
+
+            ViewBag.FilterValue = searchData;
+
+            var sellProducts = db.SellProducts
+                .Include(s => s.Customer)
+                .Include(s => s.Product)
+                .Where(i => string.IsNullOrEmpty(searchData)
+                    || i.Product.Name.ToLower().Contains(searchData.ToLower())
+                    || i.Customer.Name.ToLower().Contains(searchData.ToLower()));
 
             int pageSize = 15;
             int pageNumber = (page ?? 1);
 
-            return View(sellProducts.OrderByDescending(i => i.ExportDate).ThenBy(i => i.Product.Name).ToPagedList(pageNumber, pageSize));
+            return View(sellProducts.OrderByDescending(i => i.SellDate).ThenBy(i => i.Product.Name).ToPagedList(pageNumber, pageSize));
         }
 
         // GET: SellProducts/Details/5
@@ -51,10 +67,7 @@ namespace MaiTrinhWeb.Controllers
         // GET: SellProducts/Create
         public ActionResult Create()
         {
-            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name");
-
-            //ViewBag.ProductId = new SelectList(db.Products, "Id", "Name");
-
+            ViewBag.CustomerId = new SelectList(db.Customers.OrderBy(i => i.Name) , "Id", "Name");
             ViewBag.ProductId = GetProductId();
 
             return View();
@@ -90,7 +103,7 @@ namespace MaiTrinhWeb.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name", sellProduct.CustomerId);
+            ViewBag.CustomerId = new SelectList(db.Customers.OrderBy(i => i.Name), "Id", "Name", sellProduct.CustomerId);
 
             ViewBag.ProductId = GetProductId(sellProduct.ProductId);
 
@@ -109,7 +122,7 @@ namespace MaiTrinhWeb.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name", sellProduct.CustomerId);
+            ViewBag.CustomerId = new SelectList(db.Customers.OrderBy(i => i.Name), "Id", "Name", sellProduct.CustomerId);
 
             ViewBag.ProductId = GetProductId(sellProduct.ProductId);
 
@@ -129,7 +142,7 @@ namespace MaiTrinhWeb.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name", sellProduct.CustomerId);
+            ViewBag.CustomerId = new SelectList(db.Customers.OrderBy(i => i.Name), "Id", "Name", sellProduct.CustomerId);
 
             ViewBag.ProductId = GetProductId(sellProduct.ProductId);
 

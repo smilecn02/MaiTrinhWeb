@@ -14,7 +14,7 @@ namespace MaiTrinhWeb.Data
         [Display(Name = "Ngày bán")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString="{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime ExportDate { get; set; }
+        public DateTime SellDate { get; set; }
 
         [Display(Name = "Sản phẩm")]
         public Guid ProductId { get; set; }

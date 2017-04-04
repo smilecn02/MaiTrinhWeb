@@ -9,15 +9,29 @@
 
 <h2>Danh sách sản phẩm</h2>
 
-<p>
+<style>
+    /*.s1 {
+        background: red;
+    }
+
+    .s2 {
+        background: blue;
+        text-align: right;
+        margin: 0;
+    }*/
+
+
+</style>
+
+<p class="col-md-4 s1">
     @Html.ActionLink("Tạo mới", "Create", null, new { @class = "btn btn-success" })
 </p>
 
 @using (Html.BeginForm("Index", "Products", FormMethod.Get))
 {
-    <p>
-        Tên sản phẩm: @Html.TextBox("searchData", ViewBag.FilterValue as string)
-        <input type="submit" value="Tìm kiếm" />
+    <p class="pull-right col-md-4 s2">
+        @Html.TextBox("searchData", ViewBag.FilterValue as string, new { placeholder = "Tên sản phẩm" })
+        <input type="submit" value="Tìm kiếm" class="btn btn-primary s3" />
     </p>
 }
 
