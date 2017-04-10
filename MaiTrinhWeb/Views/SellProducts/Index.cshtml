@@ -14,7 +14,7 @@
 @using (Html.BeginForm("Index", "SellProducts", FormMethod.Get))
 {
     <p class="pull-right col-md-4 s2">
-        @Html.TextBox("searchData", ViewBag.FilterValue as string, new { placeholder = "Tên sản phẩm" })
+        @Html.TextBox("searchData", ViewBag.FilterValue as string, new { placeholder = "Tên sản phẩm hoặc khách hàng" })
         <input type="submit" value="Tìm kiếm" class="btn btn-primary s3" />
     </p>
 }

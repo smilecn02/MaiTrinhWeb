@@ -14,11 +14,25 @@ namespace MaiTrinhWeb.Controllers
         private MaiTrinhWebContext db = new MaiTrinhWebContext();
 
         // GET: Customers
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page, string searchData, string filterValue)
         {
+            if (searchData != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchData = filterValue;
+            }
+
+            ViewBag.FilterValue = searchData;
+
             int pageSize = 15;
             int pageNumber = (page ?? 1);
             return View(db.Customers.OrderBy(i => i.Name)
+                .Where(i => string.IsNullOrEmpty(searchData)
+                    || i.Name.ToLower().Contains(searchData.ToLower())
+                    || i.Address.ToLower().Contains(searchData.ToLower()))
                 .ToPagedList(pageNumber, pageSize));
         }
 

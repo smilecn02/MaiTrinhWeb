@@ -13,7 +13,7 @@ namespace MaiTrinhWeb.Controllers
     {
         private MaiTrinhWebContext db = new MaiTrinhWebContext();
 
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page, string searchData, string filterValue)
         {
             var importProducts = db.ImportProducts.GroupBy(i => new { i.ProductId, i.Product.Name })
                 .Select(i => new InventoryViewModel { ProductId = i.Key.ProductId, ProductName = i.Key.Name
@@ -69,10 +69,24 @@ namespace MaiTrinhWeb.Controllers
             ViewBag.SumImportProfit = db.ImportProducts.Any() ? db.ImportProducts.Sum(i => i.Price * i.Quantity) : 0;
             ViewBag.SumSellProfit = db.SellProducts.Any() ? db.SellProducts.Sum(i => i.Price * i.Quantity - i.ShipPrice) : 0;
 
+            if (searchData != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchData = filterValue;
+            }
+
+            ViewBag.FilterValue = searchData;
+
             int pageSize = 15;
             int pageNumber = (page ?? 1);
 
-            return View(inventoryQuery2.Where(i => i.SumQuantity > 0).OrderBy(i => i.ProductName)
+            return View(inventoryQuery2.Where(i => i.SumQuantity > 0)
+                .OrderBy(i => i.ProductName)
+                .Where(i => string.IsNullOrEmpty(searchData)
+                    || i.ProductName.ToLower().Contains(searchData.ToLower()))
                 .ToPagedList(pageNumber, pageSize));
         }
 

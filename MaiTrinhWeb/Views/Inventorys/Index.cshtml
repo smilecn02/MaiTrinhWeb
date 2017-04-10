@@ -8,6 +8,14 @@
 
 <h2>Thống kê sản phẩm tồn</h2>
 
+@using (Html.BeginForm("Index", "Inventorys", FormMethod.Get))
+{
+    <p class="pull-right col-md-4 s2">
+        @Html.TextBox("searchData", ViewBag.FilterValue as string, new { placeholder = "Tên sản phẩm" })
+        <input type="submit" value="Tìm kiếm" class="btn btn-primary s3" />
+    </p>
+}
+
 <table class="table">
     <tr>
         <th>
@@ -50,7 +58,7 @@
 </table>
 
 <div>
-    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, filterValue = ViewBag.FilterValue }))
 </div>
 
 <br />

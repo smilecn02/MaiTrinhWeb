@@ -316,23 +316,79 @@
     <Content Include="Libs\jsImgSlider\themes\1\bullet.png" />
     <Content Include="Libs\jsImgSlider\themes\1\js-image-slider.css" />
     <Content Include="Libs\jsImgSlider\themes\1\js-image-slider.js" />
-    <Content Include="ProductImages\March\19.03\16681957_1791453890880636_2742441561463726568_n.jpg" />
-    <Content Include="ProductImages\March\19.03\16831036_1791495887543103_3321649836587774426_n.jpg" />
-    <Content Include="ProductImages\March\19.03\16865123_1796389723720386_4587674759352035232_n.jpg" />
-    <Content Include="ProductImages\March\19.03\16865181_1791453934213965_1229662508287887511_n.jpg" />
-    <Content Include="ProductImages\March\19.03\16938749_1791495924209766_4541259781538542391_n.jpg" />
-    <Content Include="ProductImages\March\19.03\16939250_1791495900876435_1674588043210035925_n.jpg" />
-    <Content Include="ProductImages\March\19.03\16996120_1796389680387057_3041290179720423590_n.jpg" />
-    <Content Include="ProductImages\March\19.03\16998817_1796389653720393_4668315095357209740_n.jpg" />
-    <Content Include="ProductImages\March\19.03\17021484_1796389620387063_7957979044041525310_n.jpg" />
-    <Content Include="ProductImages\March\19.03\17021840_1810643845628307_1250810209565896728_n.jpg" />
-    <Content Include="ProductImages\March\19.03\17021905_1796389780387047_2635059053285764300_n.jpg" />
-    <Content Include="ProductImages\March\19.03\17098426_1810643892294969_692813098054553561_n.jpg" />
-    <Content Include="ProductImages\March\19.03\17103280_1810643875628304_7070454388218286594_n.jpg" />
-    <Content Include="ProductImages\March\19.03\17191288_1810682408957784_8172155193863067493_n.jpg" />
-    <Content Include="ProductImages\March\19.03\17201056_1810682375624454_8766861423329550201_n.jpg" />
-    <Content Include="ProductImages\March\19.03\17201346_1810682442291114_8773612357494191297_n.jpg" />
-    <Content Include="ProductImages\March\19.03\17202942_1810643925628299_7347977590023058996_n.jpg" />
+    <Content Include="ProductImages\14199429_174818126259251_9102934538563371859_n.jpg" />
+    <Content Include="ProductImages\14263961_176046506136413_5305802233004667596_n.jpg" />
+    <Content Include="ProductImages\14292267_175272816213782_3653646878894983838_n.jpg" />
+    <Content Include="ProductImages\14317489_176457759428621_6687792145060696722_n.jpg" />
+    <Content Include="ProductImages\14354904_178236705917393_8259041341884084045_n.jpg" />
+    <Content Include="ProductImages\14359184_176046492803081_3299207944303595878_n.jpg" />
+    <Content Include="ProductImages\14364820_176457762761954_3280124838798644013_n.jpg" />
+    <Content Include="ProductImages\14368786_179097335831330_3102721536911587242_n.jpg" />
+    <Content Include="ProductImages\14369859_176457779428619_3916363000509018566_n.jpg" />
+    <Content Include="ProductImages\14440955_178236695917394_4129053984081451687_n.jpg" />
+    <Content Include="ProductImages\14479649_180850492322681_8449533277115547406_n.jpg" />
+    <Content Include="ProductImages\14937328_193033354437728_1036300162442561059_n.jpg" />
+    <Content Include="ProductImages\14947442_194996310908099_4164385097568171436_n.jpg" />
+    <Content Include="ProductImages\14991888_196985710709159_4746670838132914035_n.jpg" />
+    <Content Include="ProductImages\14991968_196985534042510_3114655032124034527_n.jpg" />
+    <Content Include="ProductImages\15073340_199164537157943_3893455308372678748_n.jpg" />
+    <Content Include="ProductImages\15094877_200757863665277_1880870024585351688_n.jpg" />
+    <Content Include="ProductImages\15181466_200971593643904_4930831651363287796_n.jpg" />
+    <Content Include="ProductImages\15192755_202158256858571_6271638533659534533_n.jpg" />
+    <Content Include="ProductImages\15219991_202158260191904_2988234574539418761_n.jpg" />
+    <Content Include="ProductImages\15380616_208057419601988_1985806437801893408_n.jpg" />
+    <Content Include="ProductImages\15400425_208057316268665_6514930355272995492_n.jpg" />
+    <Content Include="ProductImages\15492431_208057299602000_1956066609057688869_n.jpg" />
+    <Content Include="ProductImages\15871661_215382645536132_8224215504597544771_n.jpg" />
+    <Content Include="ProductImages\16508609_230353064039090_8224426978800456747_n.jpg" />
+    <Content Include="ProductImages\16508920_230419967365733_7686784285306428977_n.jpg" />
+    <Content Include="ProductImages\16640656_230353074039089_214348317103715677_n.jpg" />
+    <Content Include="ProductImages\16681746_235115603562836_3154850559539769285_n.jpg" />
+    <Content Include="ProductImages\16681957_1791453890880636_2742441561463726568_n.jpg" />
+    <Content Include="ProductImages\16683838_230352817372448_4943775438587547776_n.jpg" />
+    <Content Include="ProductImages\16684123_230352820705781_6399966123150071340_n.jpg" />
+    <Content Include="ProductImages\16708514_230352824039114_8271165604497641578_n.jpg" />
+    <Content Include="ProductImages\16711825_230419964032400_3862322513172020202_n.jpg" />
+    <Content Include="ProductImages\16831036_1791495887543103_3321649836587774426_n.jpg" />
+    <Content Include="ProductImages\16864833_237401886667541_4135704681552036138_n %281%29.jpg" />
+    <Content Include="ProductImages\16865123_1796389723720386_4587674759352035232_n.jpg" />
+    <Content Include="ProductImages\16865181_1791453934213965_1229662508287887511_n.jpg" />
+    <Content Include="ProductImages\16939130_235115593562837_6261839271123664100_n.jpg" />
+    <Content Include="ProductImages\16939175_237402220000841_7042356989554042924_n.jpg" />
+    <Content Include="ProductImages\16939250_1791495900876435_1674588043210035925_n.jpg" />
+    <Content Include="ProductImages\16995995_237401893334207_3820732373950791902_n.jpg" />
+    <Content Include="ProductImages\16996120_1796389680387057_3041290179720423590_n.jpg" />
+    <Content Include="ProductImages\16997897_235837180157345_5811824994528508822_n.jpg" />
+    <Content Include="ProductImages\16998817_1796389653720393_4668315095357209740_n.jpg" />
+    <Content Include="ProductImages\17021484_1796389620387063_7957979044041525310_n.jpg" />
+    <Content Include="ProductImages\17021905_1796389780387047_2635059053285764300_n.jpg" />
+    <Content Include="ProductImages\17021935_237402216667508_5317923535973828158_n.jpg" />
+    <Content Include="ProductImages\17098623_237401890000874_425912248774573552_n.jpg" />
+    <Content Include="ProductImages\17103280_1810643875628304_7070454388218286594_n.jpg" />
+    <Content Include="ProductImages\17103286_240932172981179_8082066955306452570_n %281%29.jpg" />
+    <Content Include="ProductImages\17103286_240932172981179_8082066955306452570_n.jpg" />
+    <Content Include="ProductImages\17155742_267088133739152_904901870275564296_n.jpg" />
+    <Content Include="ProductImages\17155981_267088287072470_8040684384923406222_n.jpg" />
+    <Content Include="ProductImages\17200930_240932166314513_6758618187731620303_n.jpg" />
+    <Content Include="ProductImages\17201056_1810682375624454_8766861423329550201_n.jpg" />
+    <Content Include="ProductImages\17202708_242552752819121_150543733423084661_n.jpg" />
+    <Content Include="ProductImages\17264778_240932186314511_8179725026247083183_n.jpg" />
+    <Content Include="ProductImages\17342628_242837199457343_3786056479554368480_n.jpg" />
+    <Content Include="ProductImages\17352190_270065423441423_6123902565238603086_n.jpg" />
+    <Content Include="ProductImages\17352274_270065420108090_2410220710689726966_n.jpg" />
+    <Content Include="ProductImages\17353104_242552739485789_5472298047814840979_n.jpg" />
+    <Content Include="ProductImages\17353141_242552756152454_660539527323403145_n.jpg" />
+    <Content Include="ProductImages\17353538_242552766152453_9114985300581196356_n.jpg" />
+    <Content Include="ProductImages\17362520_270065413441424_9104548370321106520_n.jpg" />
+    <Content Include="ProductImages\17424601_245747839166279_6053421668193867175_n.jpg" />
+    <Content Include="ProductImages\17424966_271923556588943_9033074501166610532_n.jpg" />
+    <Content Include="ProductImages\17425863_245747832499613_2599069199312528473_n.jpg" />
+    <Content Include="ProductImages\17426158_245748085832921_6841878252691179947_n.jpg" />
+    <Content Include="ProductImages\17426248_245748099166253_4824318381690417868_n.jpg" />
+    <Content Include="ProductImages\17457336_271923553255610_8022547729407132851_n.jpg" />
+    <Content Include="ProductImages\17457799_271923559922276_1211717063141505790_n.jpg" />
+    <Content Include="ProductImages\17498961_245748095832920_925298009077923829_n.jpg" />
+    <Content Include="ProductImages\17499490_245747845832945_2403013191321122477_n.jpg" />
     <Content Include="Scripts\app\datepicker.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -430,6 +486,7 @@
     <Content Include="Content\bootstrap\bootstrap.less" />
     <Content Include="Content\bootstrap\badges.less" />
     <Content Include="Content\bootstrap\alerts.less" />
+    <None Include="Properties\PublishProfiles\MaiTrinhWebPublish.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-1.12.4-vsdoc.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
@@ -449,7 +506,9 @@
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -495,6 +554,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ProductImages\March\19.03\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -527,7 +587,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>37648</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:37648/</IISUrl>
+          <IISUrl>http://localhost:12345/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
