@@ -8,6 +8,7 @@ using PagedList;
 
 namespace MaiTrinhWeb.Controllers
 {
+    [Authorize(Users = "khactrinhcn02@gmail.com,thaingocmaitrinh@gmail.com")]
     public class ImportProductsController : Controller
     {
         private MaiTrinhWebContext db = new MaiTrinhWebContext();

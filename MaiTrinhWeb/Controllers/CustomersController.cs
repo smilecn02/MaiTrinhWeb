@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace MaiTrinhWeb.Controllers
 {
+    [Authorize(Users = "khactrinhcn02@gmail.com,thaingocmaitrinh@gmail.com")]
     public class CustomersController : Controller
     {
         private MaiTrinhWebContext db = new MaiTrinhWebContext();

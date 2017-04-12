@@ -10,6 +10,7 @@ using MaiTrinhWeb.Data;
 
 namespace MaiTrinhWeb.Controllers
 {
+    [Authorize(Users = "khactrinhcn02@gmail.com,thaingocmaitrinh@gmail.com")]
     public class SuppliersController : Controller
     {
         private MaiTrinhWebContext db = new MaiTrinhWebContext();

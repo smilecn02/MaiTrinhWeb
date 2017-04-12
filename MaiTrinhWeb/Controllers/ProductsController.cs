@@ -11,6 +11,7 @@ using System.Linq;
 
 namespace MaiTrinhWeb.Controllers
 {
+    [Authorize(Users ="khactrinhcn02@gmail.com,thaingocmaitrinh@gmail.com")]
     public class ProductsController : Controller
     {
         private MaiTrinhWebContext db = new MaiTrinhWebContext();

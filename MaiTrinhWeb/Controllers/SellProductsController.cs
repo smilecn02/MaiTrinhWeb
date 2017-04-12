@@ -9,6 +9,7 @@ using PagedList;
 
 namespace MaiTrinhWeb.Controllers
 {
+    [Authorize(Users = "khactrinhcn02@gmail.com,thaingocmaitrinh@gmail.com")]
     public class SellProductsController : Controller
     {
         private SelectList GetProductId(Guid? selectedProductId = null)
